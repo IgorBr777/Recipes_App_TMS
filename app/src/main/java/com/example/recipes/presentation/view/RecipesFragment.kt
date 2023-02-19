@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.recipes.databinding.FragmentRecipesBinding
 import com.example.recipes.presentation.view.adapter.listener.RecipesListener
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class RecipesFragment : Fragment(), RecipesListener {
 
     private var _viewBinding: FragmentRecipesBinding? = null
