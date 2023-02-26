@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginBottom="2dp"
+        android:background="@drawable/edit_search_stroke_background"
         app:layout_constraintBottom_toTopOf="@+id/recycler_View"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
