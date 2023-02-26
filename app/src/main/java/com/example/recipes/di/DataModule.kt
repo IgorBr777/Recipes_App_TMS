@@ -10,7 +10,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Named
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -21,10 +20,7 @@ abstract class DataModule {
     ): RecipesRepository
 
     companion object {
-
-        private const val BASE_URL = "https://spoonacular.com/food-api/"
-        private const val API_KEY = "d3bd6a4493e9450793ccdf41037ccc36"
-
+        private const val BASE_URL = "https://myjsons.com"
 
         @Provides
         fun provideApiService(retrofit: Retrofit): ApiServiceRecipes {
