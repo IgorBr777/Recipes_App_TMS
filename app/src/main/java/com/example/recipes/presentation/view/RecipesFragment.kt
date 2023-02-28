@@ -5,14 +5,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.recipes.R
 import com.example.recipes.databinding.FragmentRecipesBinding
+import com.example.recipes.presentation.view.adapter.RecipesAdapter
 import com.example.recipes.presentation.view.adapter.listener.RecipesListener
+import com.example.recipes.utils.BundleConstants
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class RecipesFragment : Fragment(), RecipesListener {
 
     private var _viewBinding: FragmentRecipesBinding? = null
     private val viewBinding get() = _viewBinding!!
+
+    private lateinit var recipesAdapter: RecipesAdapter
+
+    private val viewModel: RecipesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,17 +35,78 @@ class RecipesFragment : Fragment(), RecipesListener {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         super.onViewCreated(view, savedInstanceState)
+        recipesAdapter = RecipesAdapter(this)
+
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_View)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = recipesAdapter
+        viewModel.getRecipes()
+        viewModel.recipes.observe(viewLifecycleOwner) { listRecipes ->
+            recipesAdapter.submitList(listRecipes)
+
+        }
+
+        viewModel.bundle.observe(viewLifecycleOwner) { navBundle ->
+            if (navBundle != null) {
+
+                val recipeDetailsFragment = RecipeDetailsFragment()
+                val bundle = Bundle()
+                bundle.putString(BundleConstants.TITLE, navBundle.title)
+                bundle.putString(BundleConstants.IMAGE, navBundle.image)
+                bundle.putString(
+                    BundleConstants.READY_IN_MINUTES,
+                    navBundle.readyInMinutes.toString()
+                )
+                bundle.putString(
+                    BundleConstants.AGGREGATE_LIKES,
+                    navBundle.aggregateLikes.toString()
+                )
+
+                bundle.putString(BundleConstants.SUMMARY, navBundle.summary)
+                bundle.putString(
+                    BundleConstants.EXTENDED_INGREDIENTS,
+                    navBundle.extendedIngredients
+                )
+                bundle.putString(BundleConstants.INSTRUCTIONS, navBundle.instructions)
+
+                recipeDetailsFragment.arguments = bundle
+
+                parentFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.activity_container, recipeDetailsFragment)
+                    .addToBackStack(getString(R.string.recipes_fragment))
+                    .commit()
+
+                viewModel.userNavigated()
+            }
+
+
+        }
 
 
     }
 
-    override fun onClick() {
 
-    }
+    override fun onElementSelected(
+        title: String,
+        image: String,
+        summary: String,
+        readyInMinutes: Int,
+        aggregateLikes: Int,
+        extendedIngredients: String,
+        instructions: String
 
-    override fun onElementSelected(title: String, image: String) {
+    ) {
+        viewModel.elementClicked(
+            title,
+            image,
+            summary,
+            readyInMinutes,
+            aggregateLikes,
+            extendedIngredients,
+            instructions
+        )
 
     }
 

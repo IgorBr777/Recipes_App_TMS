@@ -12,36 +12,85 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="260dp"
+        android:layout_height="300dp"
         android:layout_marginBottom="10dp">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/title_recipe"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="40dp"
             android:layout_margin="10dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="10dp"
             android:gravity="center"
             android:text="@string/title_recipe"
-            android:textSize="20sp"
-            android:textStyle="italic"
+            android:textSize="18sp"
+            android:textStyle="bold|italic"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/image_recipe"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_recipe" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/summary_recipe"
+            android:layout_width="306dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="7dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="3"
+            android:text="@string/summary"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/image_time"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_recipe"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="26dp"
+            android:text="@string/_30_min"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_recipe" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/image_recipe"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="170dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="8dp"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toTopOf="@+id/title_recipe"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/image_time"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:background="@drawable/ic_baseline_ready_time"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="26dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/text_time"
+            app:layout_constraintTop_toBottomOf="@+id/title_recipe" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
