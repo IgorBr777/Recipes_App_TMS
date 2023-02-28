@@ -6,7 +6,7 @@ import retrofit2.http.GET
 
 interface ApiServiceRecipes {
 
-    @GET("/v/df7f791")
+    @GET("/v/d580806")
     suspend fun getRecipes():Response <RecipesResponse>
 
 }
