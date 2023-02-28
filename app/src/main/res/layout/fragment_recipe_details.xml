@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".presentation.view.RecipeDetailsFragment">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/title_recipe_details"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:text="@string/title_recipe"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/summary_recipe_details"
+        app:layout_constraintEnd_toStartOf="@+id/btn_favorite_recipe"
+        app:layout_constraintStart_toEndOf="@+id/text_details_aggregateLikes"
+        app:layout_constraintTop_toBottomOf="@+id/image_recipe_details" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/summary_recipe_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="start"
+        android:text="@string/summary"
+        android:textSize="14sp"
+        android:textStyle="normal|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_recipe_details" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/title_ingredients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="@string/ingredients"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/summary_recipe_details" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/ingredients_recipe_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="start"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_ingredients" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/title_instructions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="@string/instructions"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ingredients_recipe_details" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/instructions_recipe_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="start"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_instructions" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_details_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="15dp"
+        android:text="@string/_30_min"
+        android:textColor="@color/orange"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/summary_recipe_details"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_time_details" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_details_aggregateLikes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="15dp"
+        android:text="@string/_30_min"
+        android:textColor="@color/orange"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/summary_recipe_details"
+        app:layout_constraintStart_toEndOf="@+id/text_details_time"
+        app:layout_constraintTop_toBottomOf="@+id/image_details_aggregateLikes" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/image_recipe_details"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/image_time_details"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/ic_baseline_ready_time"
+        app:layout_constraintEnd_toStartOf="@+id/image_details_aggregateLikes"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_recipe_details" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/image_details_aggregateLikes"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/ic_baseline_aggregate_likes_details"
+        app:layout_constraintEnd_toEndOf="@+id/text_details_aggregateLikes"
+        app:layout_constraintTop_toBottomOf="@+id/image_recipe_details" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/btn_favorite_recipe"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/ic_baseline_add_fav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_recipe_details" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
