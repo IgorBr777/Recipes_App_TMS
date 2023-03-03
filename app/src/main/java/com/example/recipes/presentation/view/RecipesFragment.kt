@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +14,7 @@ import com.example.recipes.databinding.FragmentRecipesBinding
 import com.example.recipes.presentation.view.adapter.RecipesAdapter
 import com.example.recipes.presentation.view.adapter.listener.RecipesListener
 import com.example.recipes.utils.BundleConstants
+import com.example.recipes.utils.NavHelper.navigateWithBundle
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,7 +40,7 @@ class RecipesFragment : Fragment(), RecipesListener {
         super.onViewCreated(view, savedInstanceState)
         recipesAdapter = RecipesAdapter(this)
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_View)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = recipesAdapter
         viewModel.getRecipes()
@@ -49,8 +51,6 @@ class RecipesFragment : Fragment(), RecipesListener {
 
         viewModel.bundle.observe(viewLifecycleOwner) { navBundle ->
             if (navBundle != null) {
-
-                val recipeDetailsFragment = RecipeDetailsFragment()
                 val bundle = Bundle()
                 bundle.putString(BundleConstants.TITLE, navBundle.title)
                 bundle.putString(BundleConstants.IMAGE, navBundle.image)
@@ -70,17 +70,32 @@ class RecipesFragment : Fragment(), RecipesListener {
                 )
                 bundle.putString(BundleConstants.INSTRUCTIONS, navBundle.instructions)
 
-                recipeDetailsFragment.arguments = bundle
+                navigateWithBundle(navBundle.destinationId,bundle)
 
-                parentFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.activity_container, recipeDetailsFragment)
-                    .addToBackStack(getString(R.string.recipes_fragment))
-                    .commit()
+
 
                 viewModel.userNavigated()
             }
 
+
+        }
+
+
+        viewBinding.searchView.setOnQueryTextListener(object:SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                recipesAdapter.filter.filter(newText)
+                return false
+            }
+
+        })
+
+
+        viewModel.findRecipe.observe(viewLifecycleOwner){listRecipes ->
+            recipesAdapter.submitList(listRecipes)
 
         }
 

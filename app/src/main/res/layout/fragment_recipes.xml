@@ -8,18 +8,18 @@
     tools:context=".presentation.view.RecipesFragment">
 
     <SearchView
-        android:id="@+id/search_View"
+        android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginBottom="2dp"
         android:background="@drawable/edit_search_stroke_background"
-        app:layout_constraintBottom_toTopOf="@+id/recycler_View"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_View"
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"

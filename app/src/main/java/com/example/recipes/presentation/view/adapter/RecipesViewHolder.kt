@@ -15,8 +15,8 @@ class RecipesViewHolder(
     fun bind(recipesModel: RecipesModel) {
 
         viewBinding.titleRecipe.text = recipesModel.title
-        viewBinding.summaryRecipe.text=recipesModel.summary
-        viewBinding.textTime.text= recipesModel.readyInMinutes.toString()
+        viewBinding.summaryRecipe.text = recipesModel.summary
+        viewBinding.textTime.text = recipesModel.readyInMinutes.toString()
         Picasso.get().load(Uri.parse(recipesModel.image)).into(viewBinding.imageRecipe)
 
         itemView.setOnClickListener {
