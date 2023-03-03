@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.example.recipes.data.database.RecipesEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface RecipesDAO {
@@ -12,13 +13,13 @@ interface RecipesDAO {
     fun insertRecipesEntity(recipesEntity: RecipesEntity)
 
     @Query("SELECT * FROM RecipesEntity")
-    fun getRecipesEntities(): List<RecipesEntity>
+    fun getRecipesEntities(): Flow<List<RecipesEntity>>
 
     @Query("SELECT(SELECT COUNT(*) FROM RecipesEntity) !=0")
-    fun doesRecipesEntityExist(): Boolean
+    fun doesRecipesEntityExist():Flow <Boolean>
 
-    @Query("SELECT * FROM RecipesEntity WHERE title =:searchText")
+    @Query("SELECT * FROM RecipesEntity WHERE title =:searchQuery")
 
-    fun findRecipeEntityByTitle(searchText: String):List<RecipesEntity>
+    fun findRecipeEntityByTitle(searchQuery: String):Flow<List<RecipesEntity>>
 
 }

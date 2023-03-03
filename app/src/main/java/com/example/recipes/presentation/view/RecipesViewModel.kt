@@ -1,10 +1,10 @@
 package com.example.recipes.presentation.view
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.recipes.R
 import com.example.recipes.domain.RecipesInteractor
 import com.example.recipes.model.RecipesModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,15 +26,31 @@ class RecipesViewModel @Inject constructor(
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
+    private val _findRecipe = MutableLiveData<List<RecipesModel>>()
+    val findRecipe: LiveData<List<RecipesModel>> = _findRecipe
+
     fun getRecipes() {
+
+        viewModelScope.launch {
+            try {
+                recipesInteractor.getRecipes()
+            } catch (e: Exception) {
+
+                _error.value = e.message.toString()
+
+            }
+
+        }
 
         viewModelScope.launch {
 
             try {
-                val listRecipes = recipesInteractor.getRecipes()
 
-                _recipes.value = listRecipes
+                val listRecipes = recipesInteractor.showRecipes()
+                listRecipes.collect {
+                    _recipes.value = it
 
+                }
 
             } catch (e: Exception) {
 
@@ -44,6 +60,28 @@ class RecipesViewModel @Inject constructor(
 
         }
     }
+
+    fun findRecipe(searchQuery: String) {
+        viewModelScope.launch {
+            try {
+                val foundRecipe = recipesInteractor.findRecipe(searchQuery)
+                foundRecipe.collect {
+                    _findRecipe.value = it
+                }
+
+
+            } catch (e: Exception) {
+
+                _error.value = e.message.toString()
+
+            }
+
+
+        }
+
+
+    }
+
 
     fun elementClicked(
         title: String,
@@ -60,7 +98,10 @@ class RecipesViewModel @Inject constructor(
             image,
             summary,
             readyInMinutes,
-            aggregateLikes, extendedIngredients, instructions
+            aggregateLikes,
+            extendedIngredients,
+            instructions,
+            R.id.action_recipesFragment_to_recipeDetailsFragment
 
         )
     }
@@ -79,5 +120,6 @@ data class NavigateWithBundle(
     val readyInMinutes: Int,
     val aggregateLikes: Int,
     val extendedIngredients: String,
-    val instructions: String
+    val instructions: String,
+    val destinationId: Int
 )
