@@ -8,4 +8,6 @@
     <string name="ingredients">Ingredients</string>
     <string name="instructions">Instructions</string>
     <string name="recipes_fragment">RecipesFragment</string>
+    <string name="recipes">Recipes</string>
+    <string name="favorite">Favorite</string>
 </resources>
