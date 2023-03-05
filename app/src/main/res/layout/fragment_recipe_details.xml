@@ -17,6 +17,7 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="12dp"
         android:gravity="center"
@@ -24,7 +25,7 @@
         android:textSize="20sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/summary_recipe_details"
-        app:layout_constraintEnd_toStartOf="@+id/btn_favorite_recipe"
+        app:layout_constraintEnd_toStartOf="@+id/btn_add_fav_recipe"
         app:layout_constraintStart_toEndOf="@+id/text_details_aggregateLikes"
         app:layout_constraintTop_toBottomOf="@+id/image_recipe_details" />
 
@@ -112,7 +113,7 @@
         android:id="@+id/text_details_aggregateLikes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="15dp"
         android:text="@string/_30_min"
@@ -153,12 +154,12 @@
         app:layout_constraintTop_toBottomOf="@+id/image_recipe_details" />
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/btn_favorite_recipe"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:id="@+id/btn_add_fav_recipe"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
-        android:background="@drawable/ic_baseline_add_fav"
+        android:background="@drawable/favorite_selected_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_recipe_details" />
 
