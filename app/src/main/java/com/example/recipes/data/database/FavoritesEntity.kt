@@ -4,8 +4,9 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity("RecipesEntity")
-data class RecipesEntity(
+
+@Entity("FavoritesEntity")
+data class FavoritesEntity(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo("id")
     val id: Int,
@@ -22,12 +23,5 @@ data class RecipesEntity(
     @ColumnInfo("extendedIngredients")
     val extendedIngredients: String,
     @ColumnInfo("instructions")
-    val instructions: String,
-    @ColumnInfo("isFavorite")
-    val isFavorite: Boolean? = false
-
+    val instructions: String
 )
-
-
-
-

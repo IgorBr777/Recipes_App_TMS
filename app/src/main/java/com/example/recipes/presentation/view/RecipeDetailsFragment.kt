@@ -19,7 +19,7 @@ class RecipeDetailsFragment : Fragment() {
     private val viewBinding get() = _viewBinding!!
 
     private val viewModel: RecipeDetailsViewModel by viewModels()
-
+    private var isFavorite:Boolean = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,9 +42,8 @@ class RecipeDetailsFragment : Fragment() {
             val aggregateLikes = safeBundle.getString(BundleConstants.AGGREGATE_LIKES)
             val extendedIngredients = safeBundle.getString(BundleConstants.EXTENDED_INGREDIENTS)
             val instructions = safeBundle.getString(BundleConstants.INSTRUCTIONS)
-
             viewBinding.textDetailsTime.text = readyInMinutes
-            viewBinding.textDetailsAggregateLikes.text =aggregateLikes
+            viewBinding.textDetailsAggregateLikes.text = aggregateLikes
             viewBinding.titleRecipeDetails.text = title
             viewBinding.summaryRecipeDetails.text = summary
             viewBinding.ingredientsRecipeDetails.text = extendedIngredients
@@ -52,14 +51,26 @@ class RecipeDetailsFragment : Fragment() {
 
             Picasso.get().load(Uri.parse(image)).into(viewBinding.imageRecipeDetails)
 
+
+            viewBinding.btnAddFavRecipe.isSelected=isFavorite
+            viewBinding.btnAddFavRecipe.setOnClickListener {
+                viewBinding.btnAddFavRecipe.isSelected = !it.isSelected
+                if (title != null) {
+                    viewModel.onFavClicked(title, it.isSelected)
+
+                }
+
+            }
+
+
         }
 
 
-
     }
-
-
 }
+
+
+
 
 
 

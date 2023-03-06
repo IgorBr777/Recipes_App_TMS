@@ -1,51 +1,49 @@
-package com.example.recipes.presentation.view
+package com.example.recipes.presentation.view.favorites
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.recipes.databinding.FragmentRecipesBinding
-import com.example.recipes.presentation.view.adapter.RecipesAdapter
-import com.example.recipes.presentation.view.adapter.listener.RecipesListener
+import com.example.recipes.databinding.FragmentFavoriteRecipesBinding
+import com.example.recipes.presentation.view.favorites.adapter.FavoriteRecipesAdapter
+import com.example.recipes.presentation.view.favorites.adapter.listener.FavoriteRecipesListener
 import com.example.recipes.utils.BundleConstants
 import com.example.recipes.utils.NavHelper.navigateWithBundle
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RecipesFragment : Fragment(), RecipesListener {
+class FavoriteRecipesFragment : Fragment(), FavoriteRecipesListener {
 
-    private var _viewBinding: FragmentRecipesBinding? = null
+    private var _viewBinding: FragmentFavoriteRecipesBinding? = null
     private val viewBinding get() = _viewBinding!!
 
-    private lateinit var recipesAdapter: RecipesAdapter
+    private lateinit var favRecipesAdapter: FavoriteRecipesAdapter
 
-    private val viewModel: RecipesViewModel by viewModels()
+    private val viewModel: FavoriteRecipesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _viewBinding = FragmentRecipesBinding.inflate(inflater)
-        return viewBinding.root
 
+        _viewBinding = FragmentFavoriteRecipesBinding.inflate(inflater)
+        return viewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recipesAdapter = RecipesAdapter(this)
+        favRecipesAdapter = FavoriteRecipesAdapter(this)
         viewBinding.recyclerView.layoutManager = LinearLayoutManager(context)
-        viewBinding.recyclerView.adapter = recipesAdapter
-        viewModel.getRecipes()
-        viewModel.recipes.observe(viewLifecycleOwner) { listRecipes ->
-            recipesAdapter.submitList(listRecipes)
+        viewBinding.recyclerView.adapter = favRecipesAdapter
+        viewModel.getFavoriteRecipes()
+        viewModel.favorites.observe(viewLifecycleOwner) {
+            favRecipesAdapter.submitList(it)
 
         }
-
-        viewModel.bundle.observe(viewLifecycleOwner) { navBundle ->
+        viewModel.favbundle.observe(viewLifecycleOwner) { navBundle ->
             if (navBundle != null) {
                 val bundle = Bundle()
                 bundle.putString(BundleConstants.TITLE, navBundle.title)
@@ -68,41 +66,15 @@ class RecipesFragment : Fragment(), RecipesListener {
 
                 navigateWithBundle(navBundle.destinationId, bundle)
 
-
-
                 viewModel.userNavigated()
             }
 
 
         }
 
-        viewBinding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-
-                if (query != null)
-                    viewModel.findRecipe(query)
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                recipesAdapter.filter.filter(newText)
-                return false
-
-            }
-
-        })
-
-
-        viewModel.findRecipe.observe(viewLifecycleOwner) { listRecipes ->
-            recipesAdapter.submitList(listRecipes)
-
-        }
-
-
     }
 
-
-    override fun onElementSelected(
+    override fun onFavoriteElementSelected(
         title: String,
         image: String,
         summary: String,
@@ -110,9 +82,8 @@ class RecipesFragment : Fragment(), RecipesListener {
         aggregateLikes: Int,
         extendedIngredients: String,
         instructions: String
-
     ) {
-        viewModel.elementClicked(
+        viewModel.favoriteElementClicked(
             title,
             image,
             summary,
@@ -123,5 +94,10 @@ class RecipesFragment : Fragment(), RecipesListener {
         )
 
     }
+
+    override fun onFavDeleteClicked(title: String) {
+        viewModel.deleteRecipe(title)
+    }
+
 
 }

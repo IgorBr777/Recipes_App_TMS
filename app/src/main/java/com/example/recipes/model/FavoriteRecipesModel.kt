@@ -1,7 +1,6 @@
 package com.example.recipes.model
 
-data class RecipesModel(
-
+data class FavoriteRecipesModel(
     val id: Int,
     val title: String,
     val image: String,
@@ -9,9 +8,5 @@ data class RecipesModel(
     val aggregateLikes: Int,
     val summary: String,
     val extendedIngredients: String,
-    val instructions: String,
-    val isFavorite:Boolean
-    )
-
-
-
+    val instructions: String
+)

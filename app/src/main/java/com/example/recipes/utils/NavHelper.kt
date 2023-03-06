@@ -12,6 +12,10 @@ object NavHelper {
 
     }
 
+    fun Fragment.replaceGraph(graphId:Int){
 
+        findNavController().setGraph(graphId)
+
+    }
 
 }
