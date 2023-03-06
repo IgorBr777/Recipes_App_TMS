@@ -1,5 +1,6 @@
 package com.example.recipes.presentation.view.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
@@ -16,6 +17,7 @@ class RecipesAdapter(
     private var listRecipes = mutableListOf<RecipesModel>()
 
 
+    @SuppressLint("NotifyDataSetChanged")
     fun submitList(list: List<RecipesModel>) {
         this.listRecipes.clear()
         this.listRecipes = list.toMutableList()
@@ -50,10 +52,10 @@ class RecipesAdapter(
                 if (constraint == null || constraint.isEmpty()) {
                     filteredList.addAll(listRecipes)
                 } else {
-                    val filterPattern = constraint.toString().toLowerCase(Locale.ROOT).trim()
+                    val filterPattern = constraint.toString().lowercase(Locale.ROOT).trim()
 
                     for (item in listRecipes) {
-                        if (item.title.toLowerCase(Locale.ROOT).contains(filterPattern)) {
+                        if (item.title.lowercase(Locale.ROOT).contains(filterPattern)) {
                             filteredList.add(item)
                         }
                     }
@@ -65,10 +67,14 @@ class RecipesAdapter(
                 return results
             }
 
+            @SuppressLint("NotifyDataSetChanged")
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                listRecipes.clear()
-                listRecipes.addAll(results?.values as List<RecipesModel>)
-                notifyDataSetChanged()
+                if (results?.values !=null){
+                    listRecipes.clear()
+                    listRecipes.addAll(results.values as List<RecipesModel>)
+                    notifyDataSetChanged()
+                }
+
             }
 
         }
