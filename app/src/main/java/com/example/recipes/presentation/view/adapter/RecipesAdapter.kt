@@ -66,7 +66,6 @@ class RecipesAdapter(
 
                 return results
             }
-
             @SuppressLint("NotifyDataSetChanged")
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
                 if (results?.values !=null){

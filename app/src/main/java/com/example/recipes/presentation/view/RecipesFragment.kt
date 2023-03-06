@@ -78,6 +78,7 @@ class RecipesFragment : Fragment(), RecipesListener {
 
         viewBinding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
+
                 if (query != null)
                     viewModel.findRecipe(query)
                 return false
