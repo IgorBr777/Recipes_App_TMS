@@ -22,7 +22,9 @@ data class RecipesEntity(
     @ColumnInfo("extendedIngredients")
     val extendedIngredients: String,
     @ColumnInfo("instructions")
-    val instructions: String
+    val instructions: String,
+    @ColumnInfo("isFavorite")
+    val isFavorite: Boolean? = false
 
 )
 

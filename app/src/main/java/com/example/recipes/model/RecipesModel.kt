@@ -10,7 +10,7 @@ data class RecipesModel(
     val summary: String,
     val extendedIngredients: String,
     val instructions: String,
-
+    val isFavorite:Boolean
     )
 
 

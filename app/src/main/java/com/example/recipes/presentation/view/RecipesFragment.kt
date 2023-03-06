@@ -8,8 +8,6 @@ import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.recipes.R
 import com.example.recipes.databinding.FragmentRecipesBinding
 import com.example.recipes.presentation.view.adapter.RecipesAdapter
 import com.example.recipes.presentation.view.adapter.listener.RecipesListener
@@ -39,10 +37,8 @@ class RecipesFragment : Fragment(), RecipesListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recipesAdapter = RecipesAdapter(this)
-
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = recipesAdapter
+        viewBinding.recyclerView.layoutManager = LinearLayoutManager(context)
+        viewBinding.recyclerView.adapter = recipesAdapter
         viewModel.getRecipes()
         viewModel.recipes.observe(viewLifecycleOwner) { listRecipes ->
             recipesAdapter.submitList(listRecipes)
@@ -70,7 +66,7 @@ class RecipesFragment : Fragment(), RecipesListener {
                 )
                 bundle.putString(BundleConstants.INSTRUCTIONS, navBundle.instructions)
 
-                navigateWithBundle(navBundle.destinationId,bundle)
+                navigateWithBundle(navBundle.destinationId, bundle)
 
 
 
@@ -80,21 +76,22 @@ class RecipesFragment : Fragment(), RecipesListener {
 
         }
 
-
-        viewBinding.searchView.setOnQueryTextListener(object:SearchView.OnQueryTextListener {
+        viewBinding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 recipesAdapter.filter.filter(newText)
-                return false
+                viewModel.findRecipe(newText ?: "")
+                return true
+
             }
 
         })
 
 
-        viewModel.findRecipe.observe(viewLifecycleOwner){listRecipes ->
+        viewModel.findRecipe.observe(viewLifecycleOwner) { listRecipes ->
             recipesAdapter.submitList(listRecipes)
 
         }
