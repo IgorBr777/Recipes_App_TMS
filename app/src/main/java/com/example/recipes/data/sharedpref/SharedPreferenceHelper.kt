@@ -9,12 +9,10 @@ class SharedPreferenceHelper @Inject constructor(
 ) {
     fun setDarkThemeEnable(isEnable: Boolean) {
         sharedPreferences.edit().putBoolean(IS_DARK_THEME_ENABLE, isEnable).apply()
-
     }
 
     companion object {
         private const val IS_DARK_THEME_ENABLE = "IS_DARK_THEME_ENABLE"
 
     }
-
 }

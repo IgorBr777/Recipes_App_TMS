@@ -14,7 +14,6 @@ class FavoriteRecipesViewHolder(
 ): RecyclerView.ViewHolder(viewBinding.root) {
 
 fun bind(favoriteRecipesModel: FavoriteRecipesModel){
-
     viewBinding.titleFavRecipe.text=favoriteRecipesModel.title
     viewBinding.summaryFavRecipe.text = favoriteRecipesModel.summary
     viewBinding.textFavTime.text = favoriteRecipesModel.readyInMinutes.toString()
@@ -30,17 +29,10 @@ fun bind(favoriteRecipesModel: FavoriteRecipesModel){
             favoriteRecipesModel.extendedIngredients,
             favoriteRecipesModel.instructions
         )
-
     }
 
 viewBinding.btnDeleteFavRecipe.setOnClickListener {
     favoriteRecipesListener.onFavDeleteClicked(favoriteRecipesModel.title)
-
 }
-
 }
-
-
-
-
 }

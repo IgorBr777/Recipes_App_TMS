@@ -11,5 +11,4 @@ interface RecipesListener {
         extendedIngredients: String,
         instructions: String
     )
-
 }

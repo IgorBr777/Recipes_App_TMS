@@ -17,9 +17,6 @@
         app:menu="@menu/bottom_navigation_menu"
         />
 
-
-
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -28,6 +25,5 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/main_graph"
          />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,16 +19,13 @@ class FavoriteRecipesFragment : Fragment(), FavoriteRecipesListener {
 
     private var _viewBinding: FragmentFavoriteRecipesBinding? = null
     private val viewBinding get() = _viewBinding!!
-
     private lateinit var favRecipesAdapter: FavoriteRecipesAdapter
-
     private val viewModel: FavoriteRecipesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _viewBinding = FragmentFavoriteRecipesBinding.inflate(inflater)
         return viewBinding.root
     }
@@ -41,7 +38,6 @@ class FavoriteRecipesFragment : Fragment(), FavoriteRecipesListener {
         viewModel.getFavoriteRecipes()
         viewModel.favorites.observe(viewLifecycleOwner) {
             favRecipesAdapter.submitList(it)
-
         }
         viewModel.favbundle.observe(viewLifecycleOwner) { navBundle ->
             if (navBundle != null) {
@@ -56,22 +52,16 @@ class FavoriteRecipesFragment : Fragment(), FavoriteRecipesListener {
                     BundleConstants.AGGREGATE_LIKES,
                     navBundle.aggregateLikes.toString()
                 )
-
                 bundle.putString(BundleConstants.SUMMARY, navBundle.summary)
                 bundle.putString(
                     BundleConstants.EXTENDED_INGREDIENTS,
                     navBundle.extendedIngredients
                 )
                 bundle.putString(BundleConstants.INSTRUCTIONS, navBundle.instructions)
-
                 navigateWithBundle(navBundle.destinationId, bundle)
-
                 viewModel.userNavigated()
             }
-
-
         }
-
     }
 
     override fun onFavoriteElementSelected(
@@ -92,12 +82,9 @@ class FavoriteRecipesFragment : Fragment(), FavoriteRecipesListener {
             extendedIngredients,
             instructions
         )
-
     }
 
     override fun onFavDeleteClicked(title: String) {
         viewModel.deleteRecipe(title)
     }
-
-
 }

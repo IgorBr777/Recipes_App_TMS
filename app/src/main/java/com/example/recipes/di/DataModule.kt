@@ -27,20 +27,14 @@ abstract class DataModule {
         private const val BASE_URL = "https://myjsons.com"
 
         @Provides
-
         fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferenceHelper {
-
             return SharedPreferenceHelper(context.getSharedPreferences(SP_KEY, Context.MODE_PRIVATE))
-
         }
-
-
 
         @Provides
         fun provideApiService(retrofit: Retrofit): ApiServiceRecipes {
             return retrofit.create(ApiServiceRecipes::class.java)
         }
-
 
         @Provides
         fun provideRetrofitInstance(): Retrofit {
@@ -49,8 +43,5 @@ abstract class DataModule {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }
-
     }
-
-
 }

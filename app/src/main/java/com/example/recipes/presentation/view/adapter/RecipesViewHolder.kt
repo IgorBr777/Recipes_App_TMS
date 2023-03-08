@@ -13,7 +13,6 @@ class RecipesViewHolder(
 ) : RecyclerView.ViewHolder(viewBinding.root) {
 
     fun bind(recipesModel: RecipesModel) {
-
         viewBinding.titleRecipe.text = recipesModel.title
         viewBinding.summaryRecipe.text = recipesModel.summary
         viewBinding.textTime.text = recipesModel.readyInMinutes.toString()
@@ -29,10 +28,6 @@ class RecipesViewHolder(
                 recipesModel.extendedIngredients,
                 recipesModel.instructions
             )
-
         }
-
     }
-
-
 }

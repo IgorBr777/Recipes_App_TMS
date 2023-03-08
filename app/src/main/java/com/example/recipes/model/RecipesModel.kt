@@ -1,7 +1,6 @@
 package com.example.recipes.model
 
 data class RecipesModel(
-
     val id: Int,
     val title: String,
     val image: String,

@@ -15,14 +15,9 @@ class DatabaseModule {
     @Provides
     fun recipesDatabase(context: Context): RecipesDatabase {
         return RecipesDatabase.getRecipesDatabaseInstance(context)
-
     }
-
     @Provides
     fun provideRecipesDao(recipesDatabase: RecipesDatabase): RecipesDAO {
         return recipesDatabase.getRecipesDAO()
-
     }
-
-
 }

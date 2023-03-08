@@ -29,27 +29,17 @@ class FavoriteRecipesViewModel @Inject constructor(
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
-
     fun getFavoriteRecipes() {
-
         viewModelScope.launch {
-
             try {
-
-
                 val favoriteRecipes = recipesInteractor.getFavoriteRecipes()
                 favoriteRecipes.collect{
                     _favorites.value = it
                 }
-
             } catch (e: Exception) {
-
                 _error.value = e.message.toString()
             }
-
-
         }
-
     }
 
     fun favoriteElementClicked(
@@ -71,23 +61,23 @@ class FavoriteRecipesViewModel @Inject constructor(
             extendedIngredients,
             instructions,
             R.id.action_favoriteRecipesFragment_to_favoriteRecipeDetailsFragment
-
         )
     }
 
     fun userNavigated() {
-
         _favbundle.value = null
     }
 
-
     fun deleteRecipe(title: String){
         viewModelScope.launch {
-            recipesInteractor.deleteRecipeFavoriteByTitle(title)
+            try {
+                recipesInteractor.deleteRecipeFavoriteByTitle(title)
+            }
+            catch (e: Exception) {
+                _error.value = e.message.toString()
+            }
         }
     }
-
-
 }
 
 

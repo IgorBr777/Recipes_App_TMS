@@ -13,6 +13,4 @@ interface FavoriteRecipesListener {
 
 fun onFavDeleteClicked(title: String)
 
-
-
 }

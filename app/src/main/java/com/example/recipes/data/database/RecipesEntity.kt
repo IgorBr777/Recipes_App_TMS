@@ -25,7 +25,6 @@ data class RecipesEntity(
     val instructions: String,
     @ColumnInfo("isFavorite")
     val isFavorite: Boolean? = false
-
 )
 
 
