@@ -17,18 +17,35 @@ class MainViewModel @Inject constructor(
     private val _darkThemeEnabled = MutableLiveData<Boolean>()
     val darkThemeEnabled: LiveData<Boolean> = _darkThemeEnabled
 
+    private val _network = MutableLiveData<Boolean>()
+    val network: LiveData<Boolean> = _network
+
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String> = _error
 
     fun setDarkTheme(isEnable: Boolean) {
         viewModelScope.launch {
-            recipesInteractor.setDarkTheme(isEnable)
-            val isDarkTheme = !(darkThemeEnabled.value ?: false)
-            _darkThemeEnabled.value = isDarkTheme
-
+            try {
+                recipesInteractor.setDarkTheme(isEnable)
+                val isDarkTheme = !(darkThemeEnabled.value ?: false)
+                _darkThemeEnabled.value = isDarkTheme
+            }
+            catch (e: Exception) {
+                _error.value = e.message.toString()
+            }
         }
-
     }
 
-
+    fun isNetworkAvailable() {
+        viewModelScope.launch {
+            try {
+                _network.value=recipesInteractor.isNetworkAvailable()
+            }
+            catch (e: Exception){
+                _error.value=e.message.toString()
+            }
+        }
+    }
 }
 
 

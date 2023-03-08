@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
 import android.widget.Switch
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -20,7 +21,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModels()
-
     private lateinit var navController: NavController
     private lateinit var navHostFragment: NavHostFragment
 
@@ -32,12 +32,17 @@ class MainActivity : AppCompatActivity() {
         navHostFragment = supportFragmentManager.findFragmentById(
             R.id.fragmentContainerView
         ) as NavHostFragment
-
         navController = navHostFragment.navController
-
         binding.bottomNavigation.setupWithNavController(navController)
 
-
+        viewModel.isNetworkAvailable()
+        viewModel.network.observe(this) { isConnected ->
+            if (isConnected) {
+                Toast.makeText(applicationContext, getString(R.string.internet_connected), Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(applicationContext, getString(R.string.there_is_no_internet_connection_check_connection), Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     @SuppressLint("UseSwitchCompatOrMaterialCode")
@@ -53,21 +58,14 @@ class MainActivity : AppCompatActivity() {
                 val isEnable = false
                 viewModel.setDarkTheme(isEnable)
             }
-
             viewModel.darkThemeEnabled.observe(this) { darkThemeEnable ->
-
                 if (darkThemeEnable) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 } else {
-
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 }
             }
-
         }
-
         return true
     }
-
-
 }

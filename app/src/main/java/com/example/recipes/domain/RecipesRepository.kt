@@ -20,4 +20,6 @@ interface RecipesRepository {
 
     suspend fun setDarkTheme (isEnable:Boolean)
 
+    suspend fun isNetworkAvailable():Boolean
+
 }

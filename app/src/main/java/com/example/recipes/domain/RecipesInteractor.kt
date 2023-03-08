@@ -9,13 +9,10 @@ class RecipesInteractor @Inject constructor
     (private val recipesRepository: RecipesRepository) {
 
     suspend fun getRecipes() {
-
         return recipesRepository.getRecipes()
     }
 
-
     suspend fun showRecipes(): Flow<List<RecipesModel>> {
-
         return recipesRepository.showRecipes()
     }
 
@@ -25,17 +22,14 @@ class RecipesInteractor @Inject constructor
     }
 
     suspend fun getFavoriteRecipes():Flow <List<FavoriteRecipesModel>> {
-
         return recipesRepository.getFavoriteRecipes()
 
     }
-
 
     suspend fun onFavClicked(title: String, isFavorite:Boolean) {
         val foundRecipe = recipesRepository.findRecipeByTitle(title)
         recipesRepository.favClicked(foundRecipe, isFavorite)
     }
-
 
     suspend fun deleteRecipeFavoriteByTitle(title: String){
         recipesRepository.deleteRecipeFavoriteByTitle(title)
@@ -43,7 +37,9 @@ class RecipesInteractor @Inject constructor
 
     suspend fun  setDarkTheme(isEnable:Boolean){
         return recipesRepository.setDarkTheme(isEnable)
-
     }
 
+    suspend fun isNetworkAvailable():Boolean{
+        return  recipesRepository.isNetworkAvailable()
+    }
 }
