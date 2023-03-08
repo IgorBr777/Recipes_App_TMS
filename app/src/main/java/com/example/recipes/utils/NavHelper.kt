@@ -6,16 +6,11 @@ import androidx.navigation.fragment.findNavController
 
 object NavHelper {
 
-
     fun Fragment.navigateWithBundle(destinationId: Int, bundle: Bundle){
         findNavController().navigate(destinationId,bundle)
-
     }
 
     fun Fragment.replaceGraph(graphId:Int){
-
         findNavController().setGraph(graphId)
-
     }
-
 }

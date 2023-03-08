@@ -18,4 +18,8 @@ interface RecipesRepository {
 
     suspend fun deleteRecipeFavoriteByTitle(title: String)
 
+    suspend fun setDarkTheme (isEnable:Boolean)
+
+    suspend fun isNetworkAvailable():Boolean
+
 }

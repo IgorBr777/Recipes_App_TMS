@@ -20,22 +20,18 @@ class FavoriteRecipeDetailsFragment : Fragment() {
 
     private var _viewBinding: FragmentFavoriteRecipeDetailsBinding? = null
     private val viewBinding get() = _viewBinding!!
-
     private val viewModel: FavoriteRecipeDetailsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _viewBinding = FragmentFavoriteRecipeDetailsBinding.inflate(inflater)
         return viewBinding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val bundle = arguments
         bundle?.let { safeBundle ->
             val title = safeBundle.getString(BundleConstants.TITLE)
@@ -52,7 +48,6 @@ class FavoriteRecipeDetailsFragment : Fragment() {
             viewBinding.summaryFavRecipeDetails.text = summary
             viewBinding.ingredientsFavRecipeDetails.text = extendedIngredients
             viewBinding.instructionsFavRecipeDetails.text = instructions
-
             Picasso.get().load(Uri.parse(image)).into(viewBinding.imageFavRecipeDetails)
 
             viewBinding.btnDeleteFavRecipeDetails.setOnClickListener {
@@ -61,20 +56,12 @@ class FavoriteRecipeDetailsFragment : Fragment() {
                 }
                 viewModel.nav.observe(viewLifecycleOwner) {
                     if (it != null) {
-
                         val navGraph = findNavController().navInflater.inflate(it)
-
                         navGraph.startDestination = R.id.recipesFragment
                         replaceGraph(it)
-
                     }
-
                 }
             }
         }
-
-
     }
-
-
 }

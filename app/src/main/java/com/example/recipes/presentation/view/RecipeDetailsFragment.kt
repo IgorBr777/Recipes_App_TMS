@@ -14,25 +14,20 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class RecipeDetailsFragment : Fragment() {
-
     private var _viewBinding: FragmentRecipeDetailsBinding? = null
     private val viewBinding get() = _viewBinding!!
-
     private val viewModel: RecipeDetailsViewModel by viewModels()
     private var isFavorite:Boolean = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _viewBinding = FragmentRecipeDetailsBinding.inflate(inflater)
         return viewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
         val bundle = arguments
         bundle?.let { safeBundle ->
             val title = safeBundle.getString(BundleConstants.TITLE)
@@ -48,24 +43,16 @@ class RecipeDetailsFragment : Fragment() {
             viewBinding.summaryRecipeDetails.text = summary
             viewBinding.ingredientsRecipeDetails.text = extendedIngredients
             viewBinding.instructionsRecipeDetails.text = instructions
-
             Picasso.get().load(Uri.parse(image)).into(viewBinding.imageRecipeDetails)
-
 
             viewBinding.btnAddFavRecipe.isSelected=isFavorite
             viewBinding.btnAddFavRecipe.setOnClickListener {
                 viewBinding.btnAddFavRecipe.isSelected = !it.isSelected
                 if (title != null) {
                     viewModel.onFavClicked(title, it.isSelected)
-
                 }
-
             }
-
-
         }
-
-
     }
 }
 

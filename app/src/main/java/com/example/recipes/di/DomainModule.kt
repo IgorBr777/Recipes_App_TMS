@@ -18,5 +18,4 @@ class DomainModule {
     ):RecipesInteractor{
         return RecipesInteractor(recipesRepository)
     }
-
 }

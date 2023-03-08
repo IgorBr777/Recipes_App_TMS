@@ -10,10 +10,7 @@ import com.example.recipes.presentation.view.favorites.adapter.listener.Favorite
 class FavoriteRecipesAdapter
     (private val favoriteRecipesListener: FavoriteRecipesListener) :
     RecyclerView.Adapter<FavoriteRecipesViewHolder>() {
-
     private var listRecipes = mutableListOf<FavoriteRecipesModel>()
-
-
     fun submitList(list: List<FavoriteRecipesModel>) {
         this.listRecipes.clear()
         this.listRecipes = list.toMutableList()
@@ -26,24 +23,14 @@ class FavoriteRecipesAdapter
             parent,
             false
         )
-
         return FavoriteRecipesViewHolder(viewBinding, favoriteRecipesListener)
-
-
     }
 
     override fun onBindViewHolder(holder: FavoriteRecipesViewHolder, position: Int) {
-
         holder.bind(listRecipes[position])
-
-
     }
 
     override fun getItemCount(): Int {
-
         return listRecipes.size
-
     }
-
-
 }

@@ -10,4 +10,7 @@
     <string name="recipes_fragment">RecipesFragment</string>
     <string name="recipes">Recipes</string>
     <string name="favorite">Favorite</string>
+    <string name="switch_action_bar">Switch ActionBar</string>
+    <string name="internet_connected">Internet connected</string>
+    <string name="there_is_no_internet_connection_check_connection">There is no internet connection. Check the connection.</string>
 </resources>

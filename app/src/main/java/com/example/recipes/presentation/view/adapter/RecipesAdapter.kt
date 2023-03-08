@@ -16,14 +16,12 @@ class RecipesAdapter(
 ) : RecyclerView.Adapter<RecipesViewHolder>(), Filterable {
     private var listRecipes = mutableListOf<RecipesModel>()
 
-
     @SuppressLint("NotifyDataSetChanged")
     fun submitList(list: List<RecipesModel>) {
         this.listRecipes.clear()
         this.listRecipes = list.toMutableList()
         this.notifyDataSetChanged()
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipesViewHolder {
         val viewBinding = ItemRecipeBinding.inflate(
@@ -33,37 +31,30 @@ class RecipesAdapter(
         )
 
         return RecipesViewHolder(viewBinding, recipesListener)
-
     }
 
     override fun onBindViewHolder(holder: RecipesViewHolder, position: Int) {
         holder.bind(listRecipes[position])
     }
-
     override fun getItemCount(): Int {
         return listRecipes.size
     }
-
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val filteredList = mutableListOf<RecipesModel>()
-
                 if (constraint == null || constraint.isEmpty()) {
                     filteredList.addAll(listRecipes)
                 } else {
                     val filterPattern = constraint.toString().lowercase(Locale.ROOT).trim()
-
                     for (item in listRecipes) {
                         if (item.title.lowercase(Locale.ROOT).contains(filterPattern)) {
                             filteredList.add(item)
                         }
                     }
                 }
-
                 val results = FilterResults()
                 results.values = filteredList
-
                 return results
             }
             @SuppressLint("NotifyDataSetChanged")
@@ -73,9 +64,7 @@ class RecipesAdapter(
                     listRecipes.addAll(results.values as List<RecipesModel>)
                     notifyDataSetChanged()
                 }
-
             }
-
         }
     }
 }

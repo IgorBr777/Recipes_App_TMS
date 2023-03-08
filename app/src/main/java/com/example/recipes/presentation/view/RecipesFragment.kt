@@ -17,12 +17,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class RecipesFragment : Fragment(), RecipesListener {
-
     private var _viewBinding: FragmentRecipesBinding? = null
     private val viewBinding get() = _viewBinding!!
-
     private lateinit var recipesAdapter: RecipesAdapter
-
     private val viewModel: RecipesViewModel by viewModels()
 
     override fun onCreateView(
@@ -31,7 +28,6 @@ class RecipesFragment : Fragment(), RecipesListener {
     ): View {
         _viewBinding = FragmentRecipesBinding.inflate(inflater)
         return viewBinding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,7 +38,6 @@ class RecipesFragment : Fragment(), RecipesListener {
         viewModel.getRecipes()
         viewModel.recipes.observe(viewLifecycleOwner) { listRecipes ->
             recipesAdapter.submitList(listRecipes)
-
         }
 
         viewModel.bundle.observe(viewLifecycleOwner) { navBundle ->
@@ -58,27 +53,18 @@ class RecipesFragment : Fragment(), RecipesListener {
                     BundleConstants.AGGREGATE_LIKES,
                     navBundle.aggregateLikes.toString()
                 )
-
                 bundle.putString(BundleConstants.SUMMARY, navBundle.summary)
                 bundle.putString(
                     BundleConstants.EXTENDED_INGREDIENTS,
                     navBundle.extendedIngredients
                 )
                 bundle.putString(BundleConstants.INSTRUCTIONS, navBundle.instructions)
-
                 navigateWithBundle(navBundle.destinationId, bundle)
-
-
-
                 viewModel.userNavigated()
             }
-
-
         }
-
         viewBinding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-
                 if (query != null)
                     viewModel.findRecipe(query)
                 return false
@@ -87,20 +73,12 @@ class RecipesFragment : Fragment(), RecipesListener {
             override fun onQueryTextChange(newText: String?): Boolean {
                 recipesAdapter.filter.filter(newText)
                 return false
-
             }
-
         })
-
-
         viewModel.findRecipe.observe(viewLifecycleOwner) { listRecipes ->
             recipesAdapter.submitList(listRecipes)
-
         }
-
-
     }
-
 
     override fun onElementSelected(
         title: String,
@@ -110,7 +88,6 @@ class RecipesFragment : Fragment(), RecipesListener {
         aggregateLikes: Int,
         extendedIngredients: String,
         instructions: String
-
     ) {
         viewModel.elementClicked(
             title,
@@ -121,7 +98,5 @@ class RecipesFragment : Fragment(), RecipesListener {
             extendedIngredients,
             instructions
         )
-
     }
-
 }

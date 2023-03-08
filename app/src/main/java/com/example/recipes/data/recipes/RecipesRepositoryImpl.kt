@@ -4,6 +4,8 @@ import com.example.recipes.data.ApiServiceRecipes
 import com.example.recipes.data.database.FavoritesEntity
 import com.example.recipes.data.database.RecipesEntity
 import com.example.recipes.data.database.dao.RecipesDAO
+import com.example.recipes.data.network.InternetConnection
+import com.example.recipes.data.sharedpref.SharedPreferenceHelper
 import com.example.recipes.domain.RecipesRepository
 import com.example.recipes.model.FavoriteRecipesModel
 import com.example.recipes.model.RecipesModel
@@ -15,6 +17,8 @@ import java.util.*
 import javax.inject.Inject
 
 class RecipesRepositoryImpl @Inject constructor(
+    private val internetConnection: InternetConnection,
+    private val sharedPreferenceHelper: SharedPreferenceHelper,
     private val apiServiceRecipes: ApiServiceRecipes,
     private val recipesDAO: RecipesDAO
 ) : RecipesRepository {
@@ -36,20 +40,11 @@ class RecipesRepositoryImpl @Inject constructor(
                                 it.instructions
                             )
                             recipesDAO.insertRecipesEntity(recipesEntity)
-
                         }
-
                     }
-
-
                 }
-
-
             }
-
-
         }
-
     }
 
     override suspend fun showRecipes(): Flow<List<RecipesModel>> {
@@ -68,16 +63,9 @@ class RecipesRepositoryImpl @Inject constructor(
                         it.instructions,
                         it.isFavorite ?: false
                     )
-
-
                 }
-
             }
-
-
         }
-
-
     }
 
     override suspend fun findRecipeByTitle(searchQuery: String): Flow<List<RecipesModel>> {
@@ -96,11 +84,8 @@ class RecipesRepositoryImpl @Inject constructor(
                         it.instructions,
                         it.isFavorite ?: false
                     )
-
                 }
-
             }
-
         }
     }
 
@@ -128,13 +113,10 @@ class RecipesRepositoryImpl @Inject constructor(
                 }
             }
         }
-
     }
-
 
     override suspend fun getFavoriteRecipes(): Flow<List<FavoriteRecipesModel>> {
         return withContext(Dispatchers.IO) {
-
             val favoritesEntity = recipesDAO.getFavoritesEntities()
             favoritesEntity.map { recipesList ->
                 recipesList.map {
@@ -148,22 +130,28 @@ class RecipesRepositoryImpl @Inject constructor(
                         it.extendedIngredients,
                         it.instructions
                     )
-
                 }
-
             }
         }
-
-
     }
 
     override suspend fun deleteRecipeFavoriteByTitle(title: String) {
         withContext(Dispatchers.IO) {
             recipesDAO.deleteRecipeFavoriteEntityByTitle(title)
-
         }
     }
 
+    override suspend fun setDarkTheme(isEnable: Boolean) {
+        withContext(Dispatchers.IO) {
+            sharedPreferenceHelper.setDarkThemeEnable(isEnable)
+        }
+    }
+
+    override suspend fun isNetworkAvailable(): Boolean {
+        return withContext(Dispatchers.IO) {
+            internetConnection.isOnline()
+        }
+    }
 }
 
 

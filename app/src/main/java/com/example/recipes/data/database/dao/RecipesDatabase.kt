@@ -13,8 +13,6 @@ import com.example.recipes.data.database.RecipesEntity
 abstract class RecipesDatabase : RoomDatabase() {
 
     abstract fun getRecipesDAO(): RecipesDAO
-
-
     companion object {
         private const val DATABASE_NAME = "recipes_book"
         private var DATABASE_INSTANCE: RecipesDatabase? = null
@@ -27,11 +25,6 @@ abstract class RecipesDatabase : RoomDatabase() {
                     DATABASE_NAME
                 ).build()
                 .also { DATABASE_INSTANCE = it }
-
-
         }
-
     }
-
-
 }
