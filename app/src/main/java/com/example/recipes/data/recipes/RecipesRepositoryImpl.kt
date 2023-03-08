@@ -4,6 +4,7 @@ import com.example.recipes.data.ApiServiceRecipes
 import com.example.recipes.data.database.FavoritesEntity
 import com.example.recipes.data.database.RecipesEntity
 import com.example.recipes.data.database.dao.RecipesDAO
+import com.example.recipes.data.sharedpref.SharedPreferenceHelper
 import com.example.recipes.domain.RecipesRepository
 import com.example.recipes.model.FavoriteRecipesModel
 import com.example.recipes.model.RecipesModel
@@ -15,6 +16,7 @@ import java.util.*
 import javax.inject.Inject
 
 class RecipesRepositoryImpl @Inject constructor(
+    private  val sharedPreferenceHelper: SharedPreferenceHelper,
     private val apiServiceRecipes: ApiServiceRecipes,
     private val recipesDAO: RecipesDAO
 ) : RecipesRepository {
@@ -160,6 +162,13 @@ class RecipesRepositoryImpl @Inject constructor(
     override suspend fun deleteRecipeFavoriteByTitle(title: String) {
         withContext(Dispatchers.IO) {
             recipesDAO.deleteRecipeFavoriteEntityByTitle(title)
+
+        }
+    }
+
+    override suspend fun setDarkTheme(isEnable: Boolean) {
+        withContext(Dispatchers.IO){
+            sharedPreferenceHelper.setDarkThemeEnable(isEnable)
 
         }
     }

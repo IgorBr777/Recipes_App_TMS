@@ -10,4 +10,5 @@
     <string name="recipes_fragment">RecipesFragment</string>
     <string name="recipes">Recipes</string>
     <string name="favorite">Favorite</string>
+    <string name="switch_action_bar">Switch ActionBar</string>
 </resources>

@@ -41,4 +41,9 @@ class RecipesInteractor @Inject constructor
         recipesRepository.deleteRecipeFavoriteByTitle(title)
     }
 
+    suspend fun  setDarkTheme(isEnable:Boolean){
+        return recipesRepository.setDarkTheme(isEnable)
+
+    }
+
 }
