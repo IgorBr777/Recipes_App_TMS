@@ -19,13 +19,17 @@ class FavoriteRecipeDetailsViewModel @Inject constructor(
     private val _nav = MutableLiveData<Int?>()
     val nav: LiveData<Int?> = _nav
 
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String> = _error
 
     fun deleteRecipeOnDetails(title: String) {
         viewModelScope.launch {
-            recipesInteractor.deleteRecipeFavoriteByTitle(title)
-            _nav.value = (R.navigation.main_graph)
+            try {
+                recipesInteractor.deleteRecipeFavoriteByTitle(title)
+                _nav.value = (R.navigation.main_graph)
+            } catch (e: Exception) {
+                _error.value = e.message.toString()
+            }
         }
     }
-
-
 }
