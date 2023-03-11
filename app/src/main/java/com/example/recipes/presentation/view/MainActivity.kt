@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.Switch
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -38,15 +39,26 @@ class MainActivity : AppCompatActivity() {
         viewModel.isNetworkAvailable()
         viewModel.network.observe(this) { isConnected ->
             if (isConnected) {
-                Toast.makeText(applicationContext, getString(R.string.internet_connected), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    applicationContext,
+                    getString(R.string.internet_connected),
+                    Toast.LENGTH_SHORT
+                ).show()
             } else {
-                Toast.makeText(applicationContext, getString(R.string.there_is_no_internet_connection_check_connection), Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    applicationContext,
+                    getString(R.string.there_is_no_internet_connection_check_connection),
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }
 
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.exit_navigation_menu, menu)
+
         menuInflater.inflate(R.menu.switch_dark_theme_menu, menu)
         val menuItem = menu?.findItem(R.id.action_switch)
         menuItem?.let {
@@ -58,6 +70,7 @@ class MainActivity : AppCompatActivity() {
                 val isEnable = false
                 viewModel.setDarkTheme(isEnable)
             }
+
             viewModel.darkThemeEnabled.observe(this) { darkThemeEnable ->
                 if (darkThemeEnable) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
@@ -67,5 +80,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.exit_item -> finishAffinity()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
