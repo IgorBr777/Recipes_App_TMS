@@ -12,7 +12,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val recipesInteractor: RecipesInteractor
-):ViewModel() {
+) : ViewModel() {
 
     private val _darkThemeEnabled = MutableLiveData<Boolean>()
     val darkThemeEnabled: LiveData<Boolean> = _darkThemeEnabled
@@ -23,14 +23,23 @@ class MainViewModel @Inject constructor(
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
+    fun isDarkTheme() {
+        viewModelScope.launch {
+            try {
+                _darkThemeEnabled.value = recipesInteractor.isDarkTheme()
+            } catch (e: Exception) {
+                _error.value = e.message.toString()
+            }
+        }
+    }
+
     fun setDarkTheme(isEnable: Boolean) {
         viewModelScope.launch {
             try {
                 recipesInteractor.setDarkTheme(isEnable)
-                val isDarkTheme = !(darkThemeEnabled.value ?: false)
-                _darkThemeEnabled.value = isDarkTheme
-            }
-            catch (e: Exception) {
+                val isEnable = !(darkThemeEnabled.value ?: false)
+                _darkThemeEnabled.value = isEnable
+            } catch (e: Exception) {
                 _error.value = e.message.toString()
             }
         }
@@ -39,10 +48,9 @@ class MainViewModel @Inject constructor(
     fun isNetworkAvailable() {
         viewModelScope.launch {
             try {
-                _network.value=recipesInteractor.isNetworkAvailable()
-            }
-            catch (e: Exception){
-                _error.value=e.message.toString()
+                _network.value = recipesInteractor.isNetworkAvailable()
+            } catch (e: Exception) {
+                _error.value = e.message.toString()
             }
         }
     }

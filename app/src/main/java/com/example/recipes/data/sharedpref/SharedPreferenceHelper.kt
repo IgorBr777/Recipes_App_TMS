@@ -7,12 +7,17 @@ class SharedPreferenceHelper @Inject constructor(
 
     private val sharedPreferences: SharedPreferences
 ) {
+
+    fun isDarkThemeEnable(): Boolean {
+        return sharedPreferences.getBoolean(DARK_THEME_KEY, false)
+    }
+
     fun setDarkThemeEnable(isEnable: Boolean) {
-        sharedPreferences.edit().putBoolean(IS_DARK_THEME_ENABLE, isEnable).apply()
+        sharedPreferences.edit().putBoolean(DARK_THEME_KEY, isEnable).apply()
     }
 
     companion object {
-        private const val IS_DARK_THEME_ENABLE = "IS_DARK_THEME_ENABLE"
+        private const val DARK_THEME_KEY = "DARK_THEME_KEY"
 
     }
 }
