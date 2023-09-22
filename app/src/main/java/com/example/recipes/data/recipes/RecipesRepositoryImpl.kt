@@ -147,6 +147,12 @@ class RecipesRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun isDarkTheme(): Boolean {
+    return  withContext(Dispatchers.IO){
+            sharedPreferenceHelper.isDarkThemeEnable()
+        }
+    }
+
     override suspend fun isNetworkAvailable(): Boolean {
         return withContext(Dispatchers.IO) {
             internetConnection.isOnline()

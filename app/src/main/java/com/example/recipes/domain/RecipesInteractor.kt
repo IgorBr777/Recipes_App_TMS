@@ -39,6 +39,11 @@ class RecipesInteractor @Inject constructor
         return recipesRepository.setDarkTheme(isEnable)
     }
 
+    suspend fun isDarkTheme():Boolean{
+        return recipesRepository.isDarkTheme()
+
+    }
+
     suspend fun isNetworkAvailable():Boolean{
         return  recipesRepository.isNetworkAvailable()
     }

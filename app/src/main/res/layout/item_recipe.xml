@@ -33,7 +33,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/summary_recipe"
-            android:layout_width="306dp"
+            android:layout_width="280dp"
             android:layout_height="60dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
@@ -47,7 +47,7 @@
             android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/image_time"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.571"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_recipe"
             app:layout_constraintVertical_bias="0.0" />

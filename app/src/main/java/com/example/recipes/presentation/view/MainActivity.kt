@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity() {
                 ).show()
             }
         }
+        viewModel.isDarkTheme()
     }
 
     @SuppressLint("UseSwitchCompatOrMaterialCode")
@@ -66,11 +67,9 @@ class MainActivity : AppCompatActivity() {
             if (switch != null) {
                 switch.isChecked = viewModel.darkThemeEnabled.value ?: false
             }
-            switch?.setOnCheckedChangeListener { _, _ ->
-                val isEnable = false
-                viewModel.setDarkTheme(isEnable)
+            switch?.setOnCheckedChangeListener { _, isChecked->
+                viewModel.setDarkTheme(isChecked)
             }
-
             viewModel.darkThemeEnabled.observe(this) { darkThemeEnable ->
                 if (darkThemeEnable) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
