@@ -3,11 +3,15 @@ Recipes mobile application, with which you can find recipes with photos, a list 
 # Preview
 ![recipes](https://github.com/IgorBr777/Recipes_App_TMS/assets/114432428/b9324c3a-0218-4515-897f-e676bebc2005)
 
+
 ![search_recipe](https://github.com/IgorBr777/Recipes_App_TMS/assets/114432428/7f8853d7-33be-415d-8863-07d24a9e2c7f)
+
 
 ![recipe](https://github.com/IgorBr777/Recipes_App_TMS/assets/114432428/74f4df4e-f6b4-413a-93dd-606f81d6d701)
 
+
 ![favor_recipes](https://github.com/IgorBr777/Recipes_App_TMS/assets/114432428/54ae6fd6-e296-44ba-9b6e-620a232bd00a)
+
 
 ![dark_theme](https://github.com/IgorBr777/Recipes_App_TMS/assets/114432428/5c88fa9b-5c68-48ae-8da0-16bd4df37d0a)
 # Architecture
