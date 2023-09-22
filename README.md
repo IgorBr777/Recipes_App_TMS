@@ -1,5 +1,5 @@
 # Recipes_App_TMS
-Recipes mobile application, with which you can find recipes with photos, a list of ingredients and a description of the cooking process. In the application, you can add your favorite recipes to favorites and delete them, as well as install a dark theme.
+The Recipes mobile application, with which you can find recipes with photos, a list of ingredients and a description of the cooking process. In the app, you can add your favorite recipes to favorites, delete them, and switch the app to a dark theme.
 # Preview
 ![recipes](https://github.com/IgorBr777/Recipes_App_TMS/assets/114432428/b9324c3a-0218-4515-897f-e676bebc2005)
 
