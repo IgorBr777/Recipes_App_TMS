@@ -13,7 +13,8 @@ The Recipes mobile application, with which you can find recipes with photos, a l
 ![favor_recipes](https://github.com/IgorBr777/Recipes_App_TMS/assets/114432428/54ae6fd6-e296-44ba-9b6e-620a232bd00a)
 
 
-![dark_theme](https://github.com/IgorBr777/Recipes_App_TMS/assets/114432428/5c88fa9b-5c68-48ae-8da0-16bd4df37d0a)
+![dark_theme1](https://github.com/IgorBr777/Recipes_App_TMS/assets/114432428/5890c992-97b5-45c2-adca-72b2422801cb)
+
 # Architecture
 Recipes app follows the official architecture guidance.
 ![architecture layers](https://github.com/IgorBr777/Recipes_App_TMS/assets/114432428/9283d40f-f6ea-434a-a3a9-3a3ece9c245c)
