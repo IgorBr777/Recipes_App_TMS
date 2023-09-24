@@ -1,19 +1,21 @@
 # Recipes_App_TMS
 The Recipes mobile application, with which you can find recipes with photos, a list of ingredients and a description of the cooking process. In the app, you can add your favorite recipes to favorites, delete them, and switch the app to a dark theme.
 # Preview
-![recipes](https://github.com/IgorBr777/Recipes_App_TMS/assets/114432428/b9324c3a-0218-4515-897f-e676bebc2005)
+![recipes](https://github.com/IgorBr777/Recipes_App_TMS/assets/114432428/b3632c80-59fc-4a80-bdf1-6d13b9bd693c)   ![search_recipe](https://github.com/IgorBr777/Recipes_App_TMS/assets/114432428/ee495149-0aae-410b-b754-25b9f48c89c8)
 
 
-![search_recipe](https://github.com/IgorBr777/Recipes_App_TMS/assets/114432428/7f8853d7-33be-415d-8863-07d24a9e2c7f)
 
 
-![recipe](https://github.com/IgorBr777/Recipes_App_TMS/assets/114432428/74f4df4e-f6b4-413a-93dd-606f81d6d701)
+
+![recipe](https://github.com/IgorBr777/Recipes_App_TMS/assets/114432428/2dda5e52-b6ef-4322-a9cd-349116d0e89d)    ![favor_recipes](https://github.com/IgorBr777/Recipes_App_TMS/assets/114432428/4edbcab0-a51f-4b04-8aa0-7d56cdc5071e)
 
 
-![favor_recipes](https://github.com/IgorBr777/Recipes_App_TMS/assets/114432428/54ae6fd6-e296-44ba-9b6e-620a232bd00a)
 
 
-![dark_theme1](https://github.com/IgorBr777/Recipes_App_TMS/assets/114432428/5890c992-97b5-45c2-adca-72b2422801cb)
+
+
+![dark_theme_1](https://github.com/IgorBr777/Recipes_App_TMS/assets/114432428/4484555c-1eac-44c6-9542-b74e147969c6)
+
 
 # Architecture
 Recipes app follows the official architecture guidance.
