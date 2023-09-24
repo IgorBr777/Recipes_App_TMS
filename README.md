@@ -19,7 +19,8 @@ The Recipes mobile application, with which you can find recipes with photos, a l
 
 # Architecture
 Recipes app follows the official architecture guidance.
-![architecture layers](https://github.com/IgorBr777/Recipes_App_TMS/assets/114432428/9283d40f-f6ea-434a-a3a9-3a3ece9c245c)
+![architecture layers_1](https://github.com/IgorBr777/Recipes_App_TMS/assets/114432428/ba3a6180-95d7-47c0-ae1f-a82807745c39)
+
 # Tech Stacks
 Kotlin - Programming language used.
 
